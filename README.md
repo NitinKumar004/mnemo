@@ -8,6 +8,15 @@
 > Built for **The Hangover Part AI: Where's My Context?** hackathon — Cognee is
 > central, and all four memory-lifecycle APIs are first-class commands.
 
+## Demo
+
+![mnemo memory lifecycle demo](assets/demo.gif)
+
+*Teach it a decision → ingest code → recall it in a fresh session → consolidate →
+forget → recall returns nothing. All local (Ollama `qwen2.5:7b` + fastembed), no
+API keys. Terminal recording also in [`assets/demo.cast`](assets/demo.cast)
+(play with `asciinema play assets/demo.cast`).*
+
 ## Why this exists
 
 A stateless LLM re-reads your code cold every session and re-suggests things you
