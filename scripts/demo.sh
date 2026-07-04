@@ -15,9 +15,12 @@ run()  { echo "\$ $*"; "$@" 2>&1 | grep -vE "$NOISE" | grep -v '^[[:space:]]*$';
 step "Reset — start from a blank memory"
 rm -rf .mnemo && echo "cleared ./.mnemo"
 
-step "SESSION 1 — teach it a decision + ingest the codebase"
+step "SESSION 1 — teach it a decision + ingest some code"
+# Ingest a small folder so the demo stays snappy on a local 7B model.
+# Point INGEST at any path (e.g. src/mnemo) if you want a bigger graph.
+INGEST="${INGEST:-src/mnemo/memory}"
 run "$MNEMO" remember "We use JWT in httpOnly cookies, not localStorage, after an XSS token-theft bug in the old version."
-run "$MNEMO" ingest src/mnemo
+run "$MNEMO" ingest "$INGEST"
 
 step "Pretend we closed the terminal and opened a NEW session (no in-session state)"
 echo "…new shell, zero context…"
