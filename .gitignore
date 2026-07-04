@@ -1,0 +1,11 @@
+.mnemo/
+.venv/
+__pycache__/
+*.pyc
+.env
+.idea/
+.vscode/
+.DS_Store
+*.egg-info/
+build/
+dist/

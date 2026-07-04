@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mnemo"
+version = "0.1.0"
+description = "An anti-amnesia coding companion — persistent, self-hosted memory for your codebase, powered by Cognee + Claude."
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = { text = "MIT" }
+authors = [{ name = "Nitin Kumar" }]
+keywords = ["cognee", "ai-memory", "knowledge-graph", "claude", "coding-agent"]
+
+dependencies = [
+    # Cognee is the memory core. Extras:
+    #   anthropic  -> Claude as the reasoning LLM
+    #   fastembed  -> local, on-device embeddings (no external embedding API)
+    "cognee[anthropic,fastembed]>=1.0.0",
+    "typer>=0.12.0",       # CLI framework
+    "rich>=13.7.0",        # pretty terminal output
+    "python-dotenv>=1.0.0" # load .env
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.6"]
+
+[project.scripts]
+mnemo = "mnemo.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mnemo"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
