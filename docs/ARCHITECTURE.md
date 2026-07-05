@@ -192,8 +192,33 @@ Two design details worth calling out:
 Because the arrows only point *down toward the interface*, swapping the memory engine
 (or mocking it in tests) never touches the CLI or the service layer.
 
+## Using it with other AI tools (today vs. coming soon)
+
+**Today — standalone CLI.** mnemo is a curated memory you drive yourself: `remember`
+/ `ingest` to store, `ask` / `recall` to retrieve. It stores **only what you explicitly
+give it** — it does not auto-capture conversations from other tools. The memory lives
+in mnemo, not inside any one assistant, so it's shared across whatever tool you use via
+a **copy-paste bridge** (`mnemo ask …` → paste into ChatGPT/Claude/Cursor).
+
+Why other tools don't read it automatically: they aren't connected to it. A cloud tool
+like ChatGPT web also can't reach your local machine.
+
+### 🚧 Coming soon: MCP integration
+
+The planned integration is **MCP (Model Context Protocol)** — expose `remember` /
+`recall` / `forget` as MCP tools so an MCP-capable assistant (Claude Code, Cursor,
+ChatGPT Desktop) can call them **automatically**, with no copy-paste. Cognee already
+ships an MCP server, so this is wiring rather than new invention.
+
+```
+MCP-capable AI tool ── calls ──▶ MCP tools (remember / recall / forget) ──▶ Cognee graph
+```
+
+**Status: planned / coming soon.**
+
 ## Extending it
 
 - **New memory engine:** implement `MemoryBackend` and point the CLI at it. Nothing else changes.
 - **Cloud model:** change `LLM_PROVIDER` / `LLM_MODEL` in `.env` (e.g. Anthropic or Gemini).
 - **New sources:** add a loader (issues, PRs, docs) that produces text and `remember` it.
+- **MCP server (planned):** wrap the `MemoryBackend` as MCP tools for native use inside AI tools.

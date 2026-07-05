@@ -154,6 +154,32 @@ mnemo forget --dataset code        # or --all
 mnemo status
 ```
 
+## Using mnemo with your AI tools
+
+**Today — standalone CLI (works now).** mnemo is a curated memory you drive
+yourself: you `remember` / `ingest` to store context, and `ask` / `recall` to get
+it back. It stores **only what you explicitly give it** — it does not auto-capture
+your ChatGPT/Claude conversations.
+
+To use it alongside any AI tool right now, use the **copy-paste bridge**:
+
+```bash
+mnemo ask "how does auth work here and why?"   # then paste the answer into ChatGPT/Claude/Cursor
+```
+
+Because the memory lives in mnemo (not inside any one tool), the same context works
+across every tool you use — instead of being trapped in one tool's session.
+
+### 🚧 Coming soon: MCP integration
+
+Other tools (ChatGPT, Claude Code, Cursor) don't automatically read mnemo's memory
+yet — they're not connected to it. The planned integration is **MCP (Model Context
+Protocol)**: exposing `remember` / `recall` / `forget` as MCP tools so an
+MCP-capable assistant can call them **automatically**, no copy-paste. (Cognee already
+ships an MCP server, so this is wiring, not new invention.)
+
+**Status: planned / coming soon.**
+
 ## The demo (what to record)
 
 1. **Session 1 — teach it.** `mnemo remember "…XSS decision…"`, then `mnemo ingest .`.
