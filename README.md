@@ -71,6 +71,9 @@ src/mnemo/
 Why it's extensible: the memory engine is behind one interface, the sync/
 scanning logic is pure and unit-tested offline, and the CLI is a thin shell.
 
+> 📖 Fuller write-up (plain-English + technical, with a real-life example):
+> [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
 ## How we built it (design decisions)
 
 A short, honest account of the choices behind the code:
